@@ -311,9 +311,9 @@ class CReaderParadox( CReader ):
   def readFieldTime( self, o_field ):
     nTime = self.readNumber( 'I' )
     ##  Number of milliseconds since midnight, which is |0|.
-    nHour = nTime / 3600000
-    nMinute = nTime / 60000 - nHour * 60
-    nSecond = nTime / 1000 - nHour * 3600 - nMinute * 60
+    nHour = nTime // 3600000
+    nMinute = nTime // 60000 - nHour * 60
+    nSecond = nTime // 1000 - nHour * 3600 - nMinute * 60
     return time( nHour, nMinute, nSecond )
 
 
