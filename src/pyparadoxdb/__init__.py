@@ -81,14 +81,17 @@ class CField( object ):
   DATE          = 0x02
   INT16         = 0x03
   INT32         = 0x04
+  CURRENCY      = 0x05
   INT64         = 0x06
   LOGICAL       = 0x09
   MEMO_BLOB     = 0x0C
   BLOB          = 0x0D
+  FORMATTED_MEMO_BLOB         = 0x0E
   GRAPHICS_BLOB = 0x10
   TIME          = 0x14
   TIMESTAMP     = 0x15
   AUTOINCREMENT = 0x16
+  BCD_DECIMAL   = 0x17
   BYTES         = 0x18
   ABOUT_TYPES = {
     ALPHA:
@@ -103,6 +106,9 @@ class CField( object ):
     INT32:
       { 'name'   : "int32",
         'sqlite' : 'INTEGER' },
+    CURRENCY:
+      { 'name'   : "int64",
+        'sqlite' : 'INTEGER' },
     INT64:
       { 'name'   : "int64",
         'sqlite' : 'INTEGER' },
@@ -113,6 +119,9 @@ class CField( object ):
       { 'name'   : "mblob",
         'sqlite' : 'BLOB' },
     BLOB:
+      { 'name'   : "blob",
+        'sqlite' : 'BLOB' },
+    FORMATTED_MEMO_BLOB:
       { 'name'   : "blob",
         'sqlite' : 'BLOB' },
     GRAPHICS_BLOB:
@@ -126,7 +135,10 @@ class CField( object ):
         'sqlite' : 'TEXT' },
     AUTOINCREMENT:
       { 'name'   : "autoincrement",
-        'sqlite' : 'INTEGER PRIMARY KEY' },
+        'sqlite' : 'INTEGER PRIMARY KEY' }, 
+    BCD_DECIMAL:
+      { 'name'   : "decimal",
+        'sqlite' : 'DECIMAL(32,18)' },
     BYTES:
       { 'name'   : "bytes",
         'sqlite' : 'BLOB'  }
@@ -246,14 +258,17 @@ class CReaderParadox( CReader ):
       CField.DATE:          self.readFieldDate,
       CField.INT16:         self.readFieldInt16,
       CField.INT32:         self.readFieldInt32,
+      CField.CURRENCY:      self.readFieldInt64,
       CField.INT64:         self.readFieldInt64,
       CField.LOGICAL:       self.readFieldLogical,
       CField.MEMO_BLOB:     self.readFieldMemoBlob,
       CField.BLOB:          self.readFieldBlob,
+      CField.FORMATTED_MEMO_BLOB: self.readFieldBlob,
       CField.GRAPHICS_BLOB: self.readFieldGraphicsBlob,
       CField.TIME:          self.readFieldTime,
       CField.TIMESTAMP:     self.readFieldTimestamp,
       CField.AUTOINCREMENT: self.readFieldAutoincrement,
+      CField.BCD_DECIMAL:   self.readFieldBCD,
       CField.BYTES:         self.readFieldBytes }
     if o_field.type not in ABOUT:
       raise Error( MSG_ERR_FIELD_TYPE.format( o_field.type ) )
@@ -329,6 +344,10 @@ class CReaderParadox( CReader ):
   def readFieldAutoincrement( self, o_field ):
     return self.readNumber( 'I' )
 
+  def readFieldBCD( self, o_field ):
+    ##! Not implemented.
+    self.readArray(17)
+    return ''
 
   def readFieldBytes( self, o_field ):
     ##! Not implemented.
