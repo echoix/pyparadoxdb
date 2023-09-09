@@ -1,11 +1,8 @@
-==========
-parabridge
-==========
+# parabridge
 
 Simple tool that mirrors Paradox database as SQLite at runtime.
 
-Why?
-====
+## Why?
 
 I have a closed source third party application running on the server that
 use Paradox database. In order to communicate with this application i read
