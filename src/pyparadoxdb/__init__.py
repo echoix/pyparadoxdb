@@ -1,10 +1,11 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
+# SPDX-FileCopyrightText: Copyright 2013 Grigory Petrov
+# SPDX-FileCopyrightText: 2023-present Edouard Choinière <27212526+echoix@users.noreply.github.com>
+#
+# SPDX-License-Identifier: GPL-3.0-only
+#
 # pyparadox main library code.
 # Copyright 2013 Grigory Petrov
 # See LICENSE for details.
-
 
 try:
     import __builtin__
