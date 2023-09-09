@@ -7,21 +7,15 @@
 # Copyright 2013 Grigory Petrov
 # See LICENSE for details.
 
-try:
-    import __builtin__
+import builtins
 
-    byte_to_int = ord
-    int_to_byte = chr
-    empty_bytes = ""
-    zero_byte = "\0"
-except ImportError:
-    import builtins
+__builtin__ = builtins
+byte_to_int = int
+int_to_byte = lambda v: bytes([v])
+empty_bytes = b""
+zero_byte = b"\0"
 
-    __builtin__ = builtins
-    byte_to_int = int
-    int_to_byte = lambda v: bytes([v])
-    empty_bytes = b""
-    zero_byte = b"\0"
+
 import struct
 from datetime import date, datetime, time
 from functools import reduce
