@@ -1,4 +1,4 @@
-# parabridge
+# pyparadoxdb
 
 Simple tool that mirrors Paradox database as SQLite at runtime.
 

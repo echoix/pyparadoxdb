@@ -10,5 +10,5 @@ apidoc.main([
     '-T', # no modules.rst toc
     '-e', # Each module on it's own page
     '-o', str(Path(__file__).parent), # Output dir relative to "Sphinx root"
-    str(Path(__file__).parent.parent / 'pyparadox') # Source code root
+    str(Path(__file__).parent.parent / 'pyparadoxdb') # Source code root
 ])

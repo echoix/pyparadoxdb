@@ -5,10 +5,10 @@
 # Copyright 2013 Grigory Petrov
 # See LICENSE for details.
 
-import pyparadox
+import pyparadoxdb
 
 
-oDb = pyparadox.open( "test.db" )
+oDb = pyparadoxdb.open( "test.db" )
 print( "record size: {}".format( oDb.recordSize ) )
 print( "header size: {}".format( oDb.headerSize ) )
 print( "file type: {}".format( oDb.fileType ) )

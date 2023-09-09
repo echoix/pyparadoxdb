@@ -1,5 +1,5 @@
 =========
-pyparadox
+pyparadoxdb
 =========
 
 Simple Paradox database reader
@@ -8,7 +8,7 @@ Simple Paradox database reader
   :hidden:
 
   Home <self>
-  API <pyparadox>
+  API <pyparadoxdb>
 
 Why?
 ====
