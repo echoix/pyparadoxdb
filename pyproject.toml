@@ -1,0 +1,38 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pyparadoxdb"
+dynamic = ["version"]
+description = "Simple tool that mirrors Paradox database as SQLite at runtime."
+readme = "README.md"
+license = "GPLv3"
+authors = [
+    { name = "Grigory Petrov", email = "grigory.v.p@gmail.com" },
+]
+classifiers = [
+    "Development Status :: 1 - Planning",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 2.7",
+    "Topic :: Software Development :: Libraries",
+]
+dependencies = []
+
+[project.scripts]
+pyparadoxdb = "pyparadoxdb:main"
+
+[project.urls]
+Homepage = "http://bitbucket.org/eyeofhell/pyparadoxdb"
+
+[tool.hatch.version]
+path = "pyparadoxdb/__init__.py"
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/pyparadoxdb",
+]
