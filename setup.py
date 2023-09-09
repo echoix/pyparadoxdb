@@ -9,25 +9,30 @@ import os
 import setuptools
 import subprocess
 
-from pyparadoxdb.info import NAME_SHORT, DESCR, VER_MAJOR, VER_MINOR
+# from pyparadoxdb.info import NAME_SHORT, DESCR, VER_MAJOR, VER_MINOR
+
+NAME_SHORT = "pyparadoxdb"
+VER_MAJOR = 0
+VER_MINOR = 2
+DESCR = "Simple tool that mirrors Paradox database as SQLite at runtime."
 
 ##  Get version from VCS.
 VER_BUILD = 0
-try:
-  ##  If this file exist, package is installed from pypi and this file is
-  ##  executed with 'egg_info' command-line argument.
-  with open( 'PKG-INFO' ) as oFile:
-    import rfc822
-    import re
-    sVer = rfc822.Message( oFile ).get( 'version' )
-    if sVer:
-      oMatch = re.match( r'\d+\.\d+\.(\d+)', sVer.strip() )
-      if oMatch:
-        VER_BUILD = int( oMatch.group( 1 ) )
-except IOError:
-  DIR_THIS = os.path.dirname( os.path.abspath( __file__ ) )
-  sId = subprocess.check_output( [ 'hg', '-R', DIR_THIS, 'id', '-n' ] )
-  VER_BUILD = int( sId.strip( '+\n' ) )
+# try:
+#   ##  If this file exist, package is installed from pypi and this file is
+#   ##  executed with 'egg_info' command-line argument.
+#   with open( 'PKG-INFO' ) as oFile:
+#     import rfc822
+#     import re
+#     sVer = rfc822.Message( oFile ).get( 'version' )
+#     if sVer:
+#       oMatch = re.match( r'\d+\.\d+\.(\d+)', sVer.strip() )
+#       if oMatch:
+#         VER_BUILD = int( oMatch.group( 1 ) )
+# except IOError:
+#   DIR_THIS = os.path.dirname( os.path.abspath( __file__ ) )
+#   sId = subprocess.check_output( [ 'hg', '-R', DIR_THIS, 'id', '-n' ] )
+#   VER_BUILD = int( sId.strip( '+\n' ) )
 
 VER_TXT = ".".join( map( str, [ VER_MAJOR, VER_MINOR, VER_BUILD ] ) )
 
