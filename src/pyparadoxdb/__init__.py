@@ -8,17 +8,20 @@
 # See LICENSE for details.
 
 import builtins
-
-__builtin__ = builtins
-byte_to_int = int
-int_to_byte = lambda v: bytes([v])
-empty_bytes = b""
-zero_byte = b"\0"
-
-
 import struct
 from datetime import date, datetime, time
 from functools import reduce
+
+__builtin__ = builtins
+byte_to_int = int
+
+
+def int_to_byte(v):
+    return bytes([v])
+
+
+empty_bytes = b""
+zero_byte = b"\0"
 
 MSG_ERR_FILE = 'File "{0}" is not a paradox data file'
 MSG_ERR_ENCRYPTION = "Encrypted files are not supported"
@@ -141,7 +144,7 @@ class CReader:
     def read(self, s_format, f_dontmove=False):
         ABOUT = {"!": 0, "<": 0, "B": 1, "h": 2, "H": 2, "I": 4, "f": 4}
         nLen = reduce(lambda x, y: x + y, [ABOUT[x] for x in s_format])
-        sSplice = self._data_s[self._offset_n : self._offset_n + nLen]
+        sSplice = self._data_s[self._offset_n: self._offset_n + nLen]
         if len(sSplice) < nLen:
             raise Error()
         gItems = struct.unpack(s_format, sSplice)
@@ -150,7 +153,7 @@ class CReader:
         return gItems if len(gItems) > 1 else gItems[0]
 
     def readArray(self, n_len):
-        sSplice = self._data_s[self._offset_n : self._offset_n + n_len]
+        sSplice = self._data_s[self._offset_n: self._offset_n + n_len]
         self._offset_n += n_len
         return sSplice
 
